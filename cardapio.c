@@ -120,11 +120,11 @@ typedef struct{
 
     int desenhar_quantidade(int lin4, int col1, int col4, int qtd, char lista[NUM_DE_ITENS][MAX_TEXTO],int quat[NUM_DE_ITENS], int larguraCaixaQuantidade){
         text_color;
-        int lin2 = lin4 + 1, linha = lin2 + 1;
+        int lin2 = lin4 + 1, linha = lin2 + 1,i;
         setlocale(LC_ALL, "C");
         box(lin2, col4 + 1, lin2 + (qtd * 1 + 2), col4 + larguraCaixaQuantidade + 4);  
         setlocale(LC_ALL, "");
-        for (int i = 0; i < qtd; i++) {
+        for ( i = 0; i < qtd; i++) {
             linhaCol(linha, col1 + 2, 1);  
             printf("%-15s", lista[i]);
             
@@ -150,7 +150,8 @@ typedef struct{
     }
 
     void hover_opcao(int qtd, int opc, int linha, int col1, char lista[NUM_DE_ITENS][MAX_TEXTO]){
-        for (int i = 0; i < qtd; i++) {
+        int i;
+		for ( i = 0; i < qtd; i++) {
             if (i == opc) {
                 text_hover;  
             } else {
@@ -164,8 +165,8 @@ typedef struct{
 // "Controller"
 	
     void menu_atualizar(int lin1, int col1, int qtd, char lista[NUM_DE_ITENS][MAX_TEXTO], int opc, int quat[NUM_DE_ITENS]) {
-        int tamMaxitem = 0;
-        for (int i = 0; i < qtd; i++) {
+        int tamMaxitem = 0,i;
+        for (i = 0; i < qtd; i++) {
             int len = strlen(lista[i]);
             if (len > tamMaxitem) tamMaxitem = len;
         }
@@ -265,7 +266,8 @@ typedef struct{
 	// "Model"
 	
 	void montarMenu(Pedido pedidos[NUM_DE_ITENS], char lista[NUM_DE_ITENS][MAX_TEXTO], int quantidade){
-	    for(int i = 0; i < quantidade; i++)
+	    int i,j;
+		for(i = 0; i < quantidade; i++)
 	    {
 	        int nome_len = strlen(pedidos[i].nome);
 	
@@ -273,7 +275,7 @@ typedef struct{
 	
 	        char pontos[30];
 	
-	        for(int j = 0; j < qtd_pontos; j++)
+	        for(j = 0; j < qtd_pontos; j++)
 	        {
 	            pontos[j] = '.';
 	        }
@@ -304,7 +306,7 @@ typedef struct{
 	}
 
 
-int main(void) {
+void main() {
 	
     int quat[NUM_DE_ITENS] = {0};
     int opc = 0;
@@ -345,5 +347,4 @@ int main(void) {
     }
     textColor(WHITE, BLACK);
     linhaCol(24, 1, 0);
-    return 0;
 }

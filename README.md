@@ -3,8 +3,7 @@
 <div align="center">
 
 ![C](https://img.shields.io/badge/Linguagem-C-00599C?style=for-the-badge&logo=c&logoColor=white)
-![Status](https://img.shields.io/badge/Status-Concluído-success?style=for-the-badge)
-![Exercícios](https://img.shields.io/badge/Exercícios-20+-blue?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Em_andamento-yellow?style=for-the-badge)
 
 Primeiro projeto robusto em linguagem c
 

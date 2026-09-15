@@ -9,6 +9,8 @@
 #define MAX_TEXTO 40
 #define BOX_PADDING 2
 
+//PEDRO ANTÃ”NIO PINHEIRO SOUTO
+
 //nomeia as teclas do teclado
 #define CIMA  72
 #define BAIXO 80
@@ -16,7 +18,7 @@
 #define ESC 27
 #define ESPECIAL 224
 
-//abrevia a mudança de cores 
+//abrevia a mudanÃ§a de cores 
 #define text_color textColor(RED, YELLOW)
 #define text_hover textColor(YELLOW, RED)
 
@@ -90,7 +92,7 @@ typedef struct{
 	    }
 	}
 
-    //define e desenha a box do menu, definindo suas dimenssões e sua cor
+    //define e desenha a box do menu, definindo suas dimenssï¿½es e sua cor
 
     void desenhar_menu(int lin1, int col1, int qtd, char lista[NUM_DE_ITENS][MAX_TEXTO], int quat[NUM_DE_ITENS], int tamMaxitem){
         // Ajuste da largura da caixa
@@ -106,7 +108,7 @@ typedef struct{
         setlocale(LC_ALL, "C");
         box(lin3, col3, lin4, col4 +19);
         setlocale(LC_ALL, "");
-        linhaCol(lin3 + 2, col3 + padding +10, 1); printf("cardápio");
+        linhaCol(lin3 + 2, col3 + padding +10, 1); printf("cardï¿½pio");
         int lin2 = lin4 + 1, linha = lin2 + 1;
         setlocale(LC_ALL, "C");
         box(lin2, col1, lin2 + (qtd * 1 + 2), col4); 
@@ -116,7 +118,7 @@ typedef struct{
         
     }
     
-    //desenha a quantidade, separada para melhor eficiência do projeto, pois quando tem alguma alteração no movimento Ã© atualizado sÃ³ o item da lista do menu, deixando hover
+    //desenha a quantidade, separada para melhor eficiï¿½ncia do projeto, pois quando tem alguma alteraï¿½ï¿½o no movimento Ã© atualizado sÃ³ o item da lista do menu, deixando hover
 
     int desenhar_quantidade(int lin4, int col1, int col4, int qtd, char lista[NUM_DE_ITENS][MAX_TEXTO],int quat[NUM_DE_ITENS], int larguraCaixaQuantidade){
         text_color;
@@ -135,7 +137,7 @@ typedef struct{
         }	
     }
 
-    //desenha o botão com suas dimensões, e altera a ordem das cores se ele estiver hover ou não
+    //desenha o botï¿½o com suas dimensï¿½es, e altera a ordem das cores se ele estiver hover ou nï¿½o
 
     int desenha_botom(int lin2, int col1, int col4, int larguraCaixaQuantidade, int hover) {
         int alturaBotao = 2;  
@@ -233,7 +235,7 @@ typedef struct{
         int quantidadeNova = quat[opc];  
 
         // Atualiza somente o item selecionado
-        linhaCol(lin1 + opc + 6, col1 + 42, 20);  // Mover para o item específico
+        linhaCol(lin1 + opc + 6, col1 + 42, 20);  // Mover para o item especï¿½fico
         printf("Quantidade: %d", quantidadeNova);
 
         while (1) {
@@ -248,7 +250,7 @@ typedef struct{
                 tecla = getch();
                 if (tecla == CIMA) {  
                     quantidadeNova++;
-                    if (quantidadeNova > 100) {  // Limite máximo de 100
+                    if (quantidadeNova > 100) {  // Limite mï¿½ximo de 100
                         quantidadeNova = 99;
                     }
                 } else if (tecla == BAIXO && quantidadeNova > 0) {  
@@ -258,7 +260,7 @@ typedef struct{
             quat[opc] = quantidadeNova;
 
             // Redesenha apenas o item alterado
-            linhaCol(lin1 + opc + 6, col1 + 42, 20);  // Mover para o item específico
+            linhaCol(lin1 + opc + 6, col1 + 42, 20);  // Mover para o item especï¿½fico
             printf("Quantidade: %d", quantidadeNova); 
         }
     }

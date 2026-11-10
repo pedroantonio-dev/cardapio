@@ -1,12 +1,20 @@
 #include <stdio.h>
 #include <locale.h>
 
+#include "app.h"
 #include "pedido.h"
 #include "menu.h"
 #include "interface.h"
 #include "teclado.h"
 
 int main(void) {
+
+	int opc = 0;
+    int sair = 1;
+    int lin4 = 9, col1 = 5, col4 = 43;
+	int larguraCaixaQuantidade = 15;
+
+	setlocale(LC_ALL, "Portuguese");
 
     Pedido pedidos[NUM_DE_ITENS] = {
 	    {"x-infarto", 30, 0},
@@ -22,12 +30,8 @@ int main(void) {
 	    {"guarana jesus", 8, 0},
 	    {"tota tola", 12, 0}
 	};
-	
 
-    // Inicializa��o do programa
-    // Montagem do card�pio
-    // Exibi��o do menu
-    // Controle da execu��o
+	app_iniciar();
 
     return 0;
 }

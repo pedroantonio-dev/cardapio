@@ -5,6 +5,18 @@
 #include <string.h>
 #include "interface.h"
 
+void linhaCol(int lin, int col, int hideCursorFlag) {
+	COORD coord = {col - 1, lin - 1};
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+
+	CONSOLE_CURSOR_INFO info = {100, !hideCursorFlag};
+	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &info);
+}
+
+void textColor(int letra, int fundo) {
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), letra + fundo * 16);
+}
+
 void box(int lin1, int col1, int lin2, int col2) {
     int i, j;
 

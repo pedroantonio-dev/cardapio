@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <conio.h>
+#include "teclado.h"
 
 int menu_movimento(Pedido pedidos[NUM_DE_ITENS], int lin1, int col1, int opc, int sair){
     int linha = lin1 + 1;  

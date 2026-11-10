@@ -1,7 +1,8 @@
 #ifndef TECLADO_H
 #define TECLADO_H
-#define NUM_DE_ITENS 12
-#define MAX_TEXTO 40
+
+#include "interface.h"
+#include "pedido.h"
 
 //nomeia as teclas do teclado
 #define CIMA  72

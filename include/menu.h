@@ -1,5 +1,8 @@
 #ifndef MENU_H
 #define MENU_H
+
+#include "interface.h"
+
 #define NUM_DE_ITENS 12
 #define MAX_TEXTO 40
 

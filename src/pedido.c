@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "pedido.h"
 
 void atualizarQuantidade(Pedido pedidos[NUM_DE_ITENS], int lin1, int col1 , int opc) {
     printf("\nSeta para cima: aumentar\nSeta para baixo: diminuir\n");

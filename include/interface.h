@@ -1,5 +1,10 @@
 #ifndef INTERFACE_H
 #define INTERFACE_H
+
+#include "menu.h"
+#include "pedido.h"
+#include "teclado.h"
+
 #define NUM_DE_ITENS 12
 #define MAX_TEXTO 40
 #define BOX_PADDING 2
@@ -9,17 +14,16 @@ enum Colors {
 	LIGHTBLUE = 9, DARKGREEN, LIGHTCYAN, LIGHTRED, LIGHTMAGENTA, YELLOW, WHITE
 };
 
-void linhaCol(int lin, int col, int hideCursorFlag) {
-	COORD coord = {col - 1, lin - 1};
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+void linhaCol(
+	int lin, 
+	int col, 
+	int hideCursorFlag
+);
+void textColor(
+	int letra, 
+	int fundo
+);
 
-	CONSOLE_CURSOR_INFO info = {100, !hideCursorFlag};
-	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &info);
-}
-
-void textColor(int letra, int fundo) {
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), letra + fundo * 16);
-}
 void linhaCol(
 	int lin, 
 	int col, 

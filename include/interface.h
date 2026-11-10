@@ -1,14 +1,6 @@
 #ifndef INTERFACE_H
 #define INTERFACE_H
 
-#include "menu.h"
-#include "pedido.h"
-#include "teclado.h"
-
-#define NUM_DE_ITENS 12
-#define MAX_TEXTO 40
-#define BOX_PADDING 2
-
 enum Colors {
 	BLACK = 0, BLUE, GREEN, CYAN, RED, MAGENTA, BROWN,
 	LIGHTBLUE = 9, DARKGREEN, LIGHTCYAN, LIGHTRED, LIGHTMAGENTA, YELLOW, WHITE
@@ -69,8 +61,7 @@ void hover_opcao(
 	int col1
 );
 void montarMenu(
-	Pedido pedidos[NUM_DE_ITENS],  
-	int quantidade
+	Pedido pedidos[NUM_DE_ITENS]
 );
 
 #endif

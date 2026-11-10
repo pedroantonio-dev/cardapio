@@ -7,7 +7,7 @@ int menu_movimento(Pedido pedidos[NUM_DE_ITENS], int lin1, int col1, int opc, in
     while (1) {
         int hoverBotao = 0;  
 
-        hover_opcao(NUM_DE_ITENS, opc, linha, col1, pedidos);
+        hover_opcao(pedidos, linha, NUM_DE_ITENS, opc, col1);
 
         int tecla = getch();
 
@@ -55,14 +55,14 @@ int menu_movimento(Pedido pedidos[NUM_DE_ITENS], int lin1, int col1, int opc, in
     }
 }
 
-void mover_quantidade(Pedido pedidos[NUM_DE_ITENS], int quantidadeNova,int opc){
+Pedido * mover_quantidade(Pedido pedidos[NUM_DE_ITENS], int quantidadeNova,int opc){
     while (1) {
         int tecla;
         tecla = getch();
 
         if (tecla == ENTER) {  
             pedidos[opc].quantidade = quantidadeNova; 
-            return;  
+            return pedidos;  
 
         } else if (tecla == ESPECIAL) { 
             tecla = getch();

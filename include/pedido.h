@@ -1,11 +1,6 @@
 #ifndef PEDIDO_H
 #define PEDIDO_H
 
-#include "teclado.h"
-#include "interface.h"
-
-#define NUM_DE_ITENS 12
-
 typedef struct {
     char nome[40];
     int preco;

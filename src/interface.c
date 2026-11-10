@@ -77,7 +77,7 @@ void desenhar_menu(Pedido pedidos[NUM_DE_ITENS], int tamMaxitem, int lin1, int c
 
 //desenha a quantidade, separada para melhor efici?ncia do projeto, pois quando tem alguma altera??o no movimento � atualizado s� o item da lista do menu, deixando hover
 
-int desenhar_quantidade(Pedido pedidos[NUM_DE_ITENS],int larguraCaixaQuantidade, int lin4, int col1, int col4, int qtd){
+void desenhar_quantidade(Pedido pedidos[NUM_DE_ITENS],int larguraCaixaQuantidade, int lin4, int col1, int col4, int qtd){
     text_color;
     int lin2 = lin4 + 1, linha = lin2 + 1,i;
     setlocale(LC_ALL, "C");
@@ -88,7 +88,7 @@ int desenhar_quantidade(Pedido pedidos[NUM_DE_ITENS],int larguraCaixaQuantidade,
         printf("%-15s", pedidos[i].nome);
         
         linhaCol(linha, col4 + 4, 1);  
-        printf("Quantidade: %d", pedidos[i].nome);
+        printf("Quantidade: %d", pedidos[i].quantidade);
 
         linha++;
     }	
@@ -96,7 +96,7 @@ int desenhar_quantidade(Pedido pedidos[NUM_DE_ITENS],int larguraCaixaQuantidade,
 
 //desenha o bot?o com suas dimens?es, e altera a ordem das cores se ele estiver hover ou n?o
 
-int desenha_botom(int larguraCaixaQuantidade, int lin2, int col1, int col4, int hover) {
+void desenha_botom(int larguraCaixaQuantidade, int lin2, int col1, int col4, int hover) {
     int alturaBotao = 2;  
     int lin5 = lin2 + 15;
     int lin6 = lin5 + alturaBotao; 
@@ -140,7 +140,7 @@ void montarMenu(Pedido pedidos[NUM_DE_ITENS]){
 
         if(i < 9)
         {
-            sprintf(lista[i],
+            sprintf(pedidos[i].nome,
                 "0%d_%s%sR$ %d,00",
                 i+1,
                 pedidos[i].nome,
@@ -150,7 +150,7 @@ void montarMenu(Pedido pedidos[NUM_DE_ITENS]){
         }
         else
         {
-            sprintf(lista[i],
+            sprintf(pedidos[i].nome,
                 "%d_%s%sR$ %d,00",
                 i+1,
                 pedidos[i].nome,

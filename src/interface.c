@@ -1,21 +1,9 @@
-// "View"
-#define NUM_DE_ITENS 12
-#define MAX_TEXTO 40
-#define BOX_PADDING 2
-
-void linhaCol(int lin, int col, int hideCursorFlag) {
-    COORD coord = {col - 1, lin - 1};
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
-
-    CONSOLE_CURSOR_INFO info = {100, !hideCursorFlag};
-    SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &info);
-}
-
-void textColor(int letra, int fundo) {
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), letra + fundo * 16);
-}
-
-//define e desenha a box, em que todos os elementos estão presentes
+#include <stdio.h>
+#include <windows.h>
+#include <locale.h>
+#include <stdlib.h>
+#include <string.h>
+#include "interface.h"
 
 void box(int lin1, int col1, int lin2, int col2) {
     int i, j;
@@ -49,9 +37,9 @@ void box(int lin1, int col1, int lin2, int col2) {
     }
 }
 
-//define e desenha a box do menu, definindo suas dimenss�es e sua cor
+//define e desenha a box do menu, definindo suas dimenss?es e sua cor
 
-void desenhar_menu(int lin1, int col1, int qtd, char lista[NUM_DE_ITENS][MAX_TEXTO], int quat[NUM_DE_ITENS], int tamMaxitem){
+void desenhar_menu(Pedido pedidos[NUM_DE_ITENS], int tamMaxitem, int lin1, int col1, int qtd){
     // Ajuste da largura da caixa
     int larguraCaixaItens = tamMaxitem + BOX_PADDING * 2;
     int larguraCaixaQuantidade = 15;  // Largura da caixa de quantidades
@@ -65,19 +53,19 @@ void desenhar_menu(int lin1, int col1, int qtd, char lista[NUM_DE_ITENS][MAX_TEX
     setlocale(LC_ALL, "C");
     box(lin3, col3, lin4, col4 +19);
     setlocale(LC_ALL, "");
-    linhaCol(lin3 + 2, col3 + padding +10, 1); printf("card�pio");
+    linhaCol(lin3 + 2, col3 + padding +10, 1); printf("card?pio");
     int lin2 = lin4 + 1, linha = lin2 + 1;
     setlocale(LC_ALL, "C");
     box(lin2, col1, lin2 + (qtd * 1 + 2), col4); 
     setlocale(LC_ALL, "");
-    desenhar_quantidade( lin4, col1, col4, qtd, lista, quat, larguraCaixaQuantidade);
+    desenhar_quantidade( pedidos, larguraCaixaQuantidade,lin4, col1, col4, qtd);
     desenha_botom( lin2, col1, col4,  larguraCaixaQuantidade, 0);
     
 }
 
-//desenha a quantidade, separada para melhor efici�ncia do projeto, pois quando tem alguma altera��o no movimento é atualizado só o item da lista do menu, deixando hover
+//desenha a quantidade, separada para melhor efici?ncia do projeto, pois quando tem alguma altera??o no movimento � atualizado s� o item da lista do menu, deixando hover
 
-int desenhar_quantidade(int lin4, int col1, int col4, int qtd, char lista[NUM_DE_ITENS][MAX_TEXTO],int quat[NUM_DE_ITENS], int larguraCaixaQuantidade){
+int desenhar_quantidade(Pedido pedidos[NUM_DE_ITENS],int larguraCaixaQuantidade, int lin4, int col1, int col4, int qtd){
     text_color;
     int lin2 = lin4 + 1, linha = lin2 + 1,i;
     setlocale(LC_ALL, "C");
@@ -85,18 +73,18 @@ int desenhar_quantidade(int lin4, int col1, int col4, int qtd, char lista[NUM_DE
     setlocale(LC_ALL, "");
     for ( i = 0; i < qtd; i++) {
         linhaCol(linha, col1 + 2, 1);  
-        printf("%-15s", lista[i]);
+        printf("%-15s", pedidos[i].nome);
         
         linhaCol(linha, col4 + 4, 1);  
-        printf("Quantidade: %d", quat[i]);
+        printf("Quantidade: %d", pedidos[i].nome);
 
         linha++;
     }	
 }
 
-//desenha o bot�o com suas dimens�es, e altera a ordem das cores se ele estiver hover ou n�o
+//desenha o bot?o com suas dimens?es, e altera a ordem das cores se ele estiver hover ou n?o
 
-int desenha_botom(int lin2, int col1, int col4, int larguraCaixaQuantidade, int hover) {
+int desenha_botom(int larguraCaixaQuantidade, int lin2, int col1, int col4, int hover) {
     int alturaBotao = 2;  
     int lin5 = lin2 + 15;
     int lin6 = lin5 + alturaBotao; 
@@ -108,15 +96,55 @@ int desenha_botom(int lin2, int col1, int col4, int larguraCaixaQuantidade, int 
     printf("Fazer pedido");
 }
 
-void hover_opcao(int qtd, int opc, int linha, int col1, char lista[NUM_DE_ITENS][MAX_TEXTO]){
+void hover_opcao(Pedido pedidos[NUM_DE_ITENS], int linha, int qtd, int opc, int col1){
     int i;
-    for ( i = 0; i < qtd; i++) {
+	for ( i = 0; i < qtd; i++) {
         if (i == opc) {
             text_hover;  
         } else {
             text_color;  
         }
         linhaCol(linha + i + 5, col1 + 2, 1);  
-        printf("%-15s", lista[i]); 
+        printf("%-15s", pedidos[i].nome); 
+    }
+}
+
+void montarMenu(Pedido pedidos[NUM_DE_ITENS]){
+    int i,j;
+	for(i = 0; i < NUM_DE_ITENS; i++)
+    {
+        int nome_len = strlen(pedidos[i].nome);
+
+        int qtd_pontos = 23 - nome_len;
+
+        char pontos[30];
+
+        for(j = 0; j < qtd_pontos; j++)
+        {
+            pontos[j] = '.';
+        }
+
+        pontos[qtd_pontos] = '\0';
+
+        if(i < 9)
+        {
+            sprintf(lista[i],
+                "0%d_%s%sR$ %d,00",
+                i+1,
+                pedidos[i].nome,
+                pontos,
+                pedidos[i].preco
+            );
+        }
+        else
+        {
+            sprintf(lista[i],
+                "%d_%s%sR$ %d,00",
+                i+1,
+                pedidos[i].nome,
+                pontos,
+                pedidos[i].preco
+            );
+        }
     }
 }

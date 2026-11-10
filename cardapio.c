@@ -314,32 +314,31 @@ void main() {
     int opc = 0;
     int sair = 1;
     int lin4 = 9, col1 = 5, col4 = 43;
-	int qtd = NUM_DE_ITENS;
 	int larguraCaixaQuantidade = 15;
 	
 	Pedido pedidos[NUM_DE_ITENS] = {
-	    {"x-infarto", 30},
-	    {"x-ratao", 26}, 
-	    {"x-tudo", 24},
-	    {"x-quase tudo", 20},
-	    {"x-bacon egg", 19},
-	    {"x-bacon", 16},
-	    {"x-nada", 10},
-	    {"x-salada", 3},
-	    {"agua da pia", 3},
-	    {"Dolly", 7},
-	    {"guarana jesus", 8},
-	    {"tota tola", 12}
+	    {"x-infarto", 30, 0},
+	    {"x-ratao", 26, 0}, 
+	    {"x-tudo", 24, 0},
+	    {"x-quase tudo", 20, 0},
+	    {"x-bacon egg", 19, 0},
+	    {"x-bacon", 16, 0},
+	    {"x-nada", 10, 0},
+	    {"x-salada", 3, 0},
+	    {"agua da pia", 3, 0},
+	    {"Dolly", 7, 0},
+	    {"guarana jesus", 8, 0},
+	    {"tota tola", 12, 0}
 	};
 	
     char lista[NUM_DE_ITENS][MAX_TEXTO];
     
-    montarMenu(pedidos, lista, NUM_DE_ITENS);
+    montarMenu(pedidos, lista);
 
     setlocale(LC_ALL, "");
     menu_atualizar(5, 5, NUM_DE_ITENS, lista, opc, quat);
     while (1) {
-    	desenhar_quantidade( lin4, col1, col4, qtd, lista, quat, larguraCaixaQuantidade);
+    	desenhar_quantidade( lin4, col1, col4, NUM_DE_ITENS, lista, quat, larguraCaixaQuantidade);
         opc = menu_movimento(5, 5, NUM_DE_ITENS, lista, opc, quat, sair);
         if (opc == 0) break;
         linhaCol(1, 1, 0);

@@ -2,12 +2,12 @@
 #include <conio.h>
 #include "teclado.h"
 
-int menu_movimento(Pedido pedidos[NUM_DE_ITENS], int lin1, int col1, int opc, int sair){
+int menu_movimento(Pedido pedidos[NUM_DE_ITENS], int lin1, int opc, int sair){
     int linha = lin1 + 1;  
     while (1) {
         int hoverBotao = 0;  
 
-        hover_opcao(pedidos, linha, NUM_DE_ITENS, opc, col1);
+        hover_opcao(pedidos, linha, NUM_DE_ITENS, opc);
 
         int tecla = getch();
 
@@ -31,7 +31,7 @@ int menu_movimento(Pedido pedidos[NUM_DE_ITENS], int lin1, int col1, int opc, in
                 if (tecla == CIMA && opc > 0) {  
                     opc--;
                     hoverBotao = 0;
-                    desenha_botom(lin1 + 5, col1, col1 + 38, 15, 1);
+                    desenha_botom(lin1 + 5, MENU_COLUNA_INICIAL + 38, 15, 1);
                 }
 
                 //seta para baixo 
@@ -44,9 +44,9 @@ int menu_movimento(Pedido pedidos[NUM_DE_ITENS], int lin1, int col1, int opc, in
                 }
                 if (opc == NUM_DE_ITENS) {
                     if (hoverBotao==1) {
-                        desenha_botom(lin1 + 5, col1, col1 + 38, 15, 0);  
+                        desenha_botom(lin1 + 5, MENU_COLUNA_INICIAL + 38, 15, 0);  
                     } else if(hoverBotao==0){
-                        desenha_botom(lin1 + 5, col1, col1 + 38, 15, 1);  
+                        desenha_botom(lin1 + 5, MENU_COLUNA_INICIAL + 38, 15, 1);  
                     }
                 }
 
@@ -55,7 +55,7 @@ int menu_movimento(Pedido pedidos[NUM_DE_ITENS], int lin1, int col1, int opc, in
     }
 }
 
-Pedido * mover_quantidade(Pedido pedidos[NUM_DE_ITENS], int quantidadeNova,int opc){
+Pedido * mover_quantidade(Pedido pedidos[NUM_DE_ITENS], int quantida deNova,int opc){
     while (1) {
         int tecla;
         tecla = getch();

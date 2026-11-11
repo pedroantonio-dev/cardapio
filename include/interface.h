@@ -6,6 +6,9 @@ enum Colors {
 	LIGHTBLUE = 9, DARKGREEN, LIGHTCYAN, LIGHTRED, LIGHTMAGENTA, YELLOW, WHITE
 };
 
+#define text_color textColor(RED, YELLOW)
+#define text_hover textColor(YELLOW, RED)
+
 void linhaCol(
 	int lin, 
 	int col, 

@@ -6,8 +6,11 @@
 #define BOX_PADDING 2
 
 // Configurações da interface
-#define MENU_LINHA_INICIAL 9
+//lin4
+#define MENU_LINHA_FINALL 9
+//col1
 #define MENU_COLUNA_INICIAL 5
+//col4
 #define MENU_COLUNA_FINAL 43
 #define LARGURA_CAIXA_QUANTIDADE 15
 
